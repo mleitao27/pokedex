@@ -55,16 +55,21 @@ export default {
     },
   },
   getters: {
-    getHp(state) {
+    getPokemontHp(state) {
       const hpStat = state.pokemon.stats.filter((stat) => {
         return stat.stat.name === "hp";
       });
       return hpStat[0].base_stat;
     },
-    getType(state) {
+    getPokemonType(state) {
       return state.pokemon.types.map((type) => {
-        return type.type.name
+        return type.type.name;
       });
-    }
+    },
+    getPokemonGeneration(state) {
+      return state.pokemon.game_indices.length
+        ? state.pokemon.game_indices[0].version.name
+        : null;
+    },
   },
 };

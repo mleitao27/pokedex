@@ -15,30 +15,66 @@ const pokemon = computed(() => {
 });
 
 const hp = computed(() => {
-  return store.getters.getHp;
+  return store.getters.getPokemontHp;
 });
 
 const types = computed(() => {
-  return store.getters.getType;
+  return store.getters.getPokemonType;
+});
+
+const generation = computed(() => {
+  return store.getters.getPokemonGeneration;
 });
 </script>
 
 <template>
-  <div
-    class="bg-red-300 w-24 text-center hover:bg-red-600 cursor-pointer rounded"
-    @click="randomPokemon"
-  >
-    Random
-  </div>
-  <div v-if="pokemon">
-    <img
-      :src="pokemon.sprites.other['official-artwork'].front_default"
-      alt="pokemon"
-    />
-    <p>{{ pokemon.name }}</p>
-    <p>Hp: {{ hp }}</p>
-    <div class="flex items-center">
-      <div v-for="type in types" :key="type" class="bg-red-300 px-1 mr-2">{{ type }}</div>
+  <div class="min-h-screen bg-primary p-6">
+    <div
+      class="
+        bg-pokegrey
+        w-32
+        px-2
+        py-2
+        text-center
+        hover:bg-pokered
+        cursor-pointer
+        rounded-full
+        mb-6
+        mx-auto
+        text-xl
+        font-medium
+      "
+      @click="randomPokemon"
+    >
+      Random
+    </div>
+    <div v-if="pokemon">
+      <div class="bg-secondary w-max mx-auto p-4 rounded-3xl">
+        <img
+          :src="pokemon.sprites.other['official-artwork'].front_default"
+          alt="pokemon"
+        />
+      </div>
+      <div class="flex items-center justify-center py-6">
+        <p class="text-white mr-4 text-xl">
+          {{ pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) }}
+        </p>
+        <div
+          v-for="type in types"
+          :key="type"
+          :class="`bg-type-${type}`"
+          class="px-1 mr-2 text-lg rounded-lg"
+        >
+          {{ type }}
+        </div>
+      </div>
+      <div class="text-white text-center">
+        <p>Hp: {{ hp }}</p>
+        <p>
+          First appearance: Pokemon
+          {{ generation.charAt(0).toUpperCase() + generation.slice(1) }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
