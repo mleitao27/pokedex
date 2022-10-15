@@ -49,7 +49,7 @@ const generation = computed(() => {
       Random
     </div>
     <div v-if="pokemon">
-      <div class="bg-secondary w-max mx-auto p-4 rounded-3xl">
+      <div class="bg-secondary w-2/3 p-4 rounded-3xl mx-auto">
         <img
           :src="pokemon.sprites.other['official-artwork'].front_default"
           alt="pokemon"
@@ -70,7 +70,7 @@ const generation = computed(() => {
       </div>
       <div class="text-white text-center">
         <p>Hp: {{ hp }}</p>
-        <p>
+        <p v-if="generation">
           First appearance: Pokemon
           {{ generation.charAt(0).toUpperCase() + generation.slice(1) }}
         </p>
