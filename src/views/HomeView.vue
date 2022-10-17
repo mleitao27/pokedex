@@ -49,7 +49,7 @@ const generation = computed(() => {
       Random
     </div>
     <div v-if="pokemon">
-      <div class="bg-secondary w-2/3 p-4 rounded-3xl mx-auto">
+      <div class="bg-secondary w-2/3 lg:w-max p-4 rounded-3xl mx-auto">
         <img
           :src="pokemon.sprites.other['official-artwork'].front_default"
           alt="pokemon"
